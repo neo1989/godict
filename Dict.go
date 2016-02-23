@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	//"net/http"
+	"godict/lib"
 )
 
 func main() {
+	rt := trans.Trans("test")
+	fmt.Println(rt)
 }
