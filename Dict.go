@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"godict/lib"
+//"fmt"
+//"godict/lib"
 )
 
 func main() {
-	rt := trans.Trans("test")
-	fmt.Println(rt)
 }
