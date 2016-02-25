@@ -10,5 +10,6 @@ func Test(t *testing.T) {
 
 	rt := trans.Trans("test")
 	fmt.Println(rt)
-	t.Error("测试没通过")
+
+	t.Log("测试通过")
 }

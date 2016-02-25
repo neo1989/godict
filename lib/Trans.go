@@ -1,7 +1,7 @@
 package trans
 
 import (
-	"fmt"
+	//"fmt"
 	"github.com/nareix/curl"
 	"regexp"
 	"time"
@@ -51,8 +51,5 @@ func Trans(word string) string {
 	re, _ := regexp.Compile(`<ul class='base-list switch_part' >.*</ul><br/>`)
 	result := re.FindStringSubmatch(page)
 
-	fmt.Println(result)
-	fmt.Println(len(result))
-
-	return "fff"
+	return result[0]
 }
