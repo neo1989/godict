@@ -39,7 +39,7 @@ func getPage(word string) string {
 	res, err := req.Do()
 
 	if err == nil {
-		return res.Body
+		return pageClean(res.Body)
 	} else {
 		return ""
 	}
@@ -67,7 +67,7 @@ func output(translated []string) {
 }
 
 func Trans(word string) {
-	page := pageClean(getPage(word))
+	page := getPage(word)
 	re, _ := regexp.Compile(`<ul class='base-list switch_part' >.*?</ul>`)
 	result := re.FindStringSubmatch(page)
 
