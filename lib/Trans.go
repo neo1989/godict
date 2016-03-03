@@ -56,8 +56,8 @@ func dataClean(data string) {
 func dataReorganize(data string) {
 	re, _ := regexp.Compile("<.*?[^>]>")
 	result := re.ReplaceAllString(data, " ")
+	translated = []string{}
 	translated = append(translated, result)
-
 }
 
 func output(translated []string) {
