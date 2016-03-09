@@ -10,6 +10,14 @@ import (
 var url string = "http://www.iciba.com/"
 var translated []string
 
+func start() time.Time {
+	return time.Now()
+}
+
+func end(s time.Time) {
+	fmt.Printf("  **查询用时： %.2fs**\n\n", time.Now().Sub(s).Seconds())
+}
+
 func pageClean(page string) string {
 	re, _ := regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
 	result := re.ReplaceAllString(page, "")
@@ -67,6 +75,9 @@ func output(translated []string) {
 }
 
 func Trans(word string) {
+
+	defer end(start())
+
 	page := getPage(word)
 	re, _ := regexp.Compile(`<ul class='base-list switch_part' >.*?</ul>`)
 	result := re.FindStringSubmatch(page)
@@ -76,7 +87,7 @@ func Trans(word string) {
 		dataClean(result[0])
 		output(translated)
 	} else {
-		fmt.Println("Illegal word... (- - |||")
+		fmt.Println("  Illegal word... (- - |||")
 	}
 	fmt.Println("\n")
 }
