@@ -2,7 +2,7 @@ package trans
 
 import (
 	"fmt"
-	"github.com/nareix/curl"
+    "github.com/parnurzeal/gorequest"
 	"regexp"
 	"time"
 )
@@ -37,20 +37,11 @@ func pageClean(page string) string {
 
 func getPage(word string) string {
 
-	req := curl.Get(url + word)
-
-	req.DialTimeout(time.Second * 10) // TCP Connection Timeout
-	req.Timeout(time.Second * 30)     // Download Timeout
-
-	req.Progress(func(p curl.ProgressStatus) {}, time.Second)
-
-	res, err := req.Do()
-
-	if err == nil {
-		return pageClean(res.Body)
-	} else {
-		return ""
-	}
+    _, body, errs := gorequest.New().Get(url + word).End()
+    if errs == nil {
+		return pageClean(body)
+    }
+    return ""
 }
 
 func dataClean(data string) {
